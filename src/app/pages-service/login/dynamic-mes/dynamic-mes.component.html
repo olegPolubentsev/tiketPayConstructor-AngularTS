@@ -1,0 +1,12 @@
+<div class="backdrop"
+     *ngIf="backdropBlock"
+     [@backdrop]
+></div>
+<div class="modal"
+     *ngIf="modalBlock"
+     [@modal]
+  appStyleErrorBackGround
+     [appStyleErrorBackGroundInput] = "{error: title, colorErr: '#d55151', colorNormal: '#9fde8d'}"
+>
+  <p>{{title}}</p>
+</div>

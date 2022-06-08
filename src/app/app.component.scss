@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+/*Шрифты из сайта: https://fonts.google.com/specimen */
+.main{
+  color: rgba(15, 20, 30, 0.77);
+  font-size: 16px;
+  font-family: 'Rubik', sans-serif;
+}
+.container{
+  max-width: 1000px;
+  min-width: 600px;
+  margin: auto;
+}
+
+.box {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  jastifi-content: center;
+  margin: 20px;
+  color: white;
+  p{
+  }
+}
+.bounce{
+  width: 120px;
+  height: 120px;
+  border: 1px solid black;
+}
+
+
+.block{
+  //padding: 1px 5px;
+  background: #ECDBBA;
+  margin-top: 12px;
+  border-radius: 5px;
+  padding: 5px;
+}
+.topBlock{
+  height: 100%;
+  background: rgba(22, 22, 22, 0.89);
+  display: flex;
+  position: relative;
+  a{
+    color: #ECDBBA;
+    padding-right: 15px;
+  }
+  .links{
+    right: 0;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  h3{
+    margin: 0;
+    position: absolute;
+    color: #ECDBBA;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  img{
+    height: 80px;
+    margin: 10px 20px;
+  }
+}
+.blockProfileUser{
+  right: 0;
+  position: relative;
+  padding: 5px;
+  //height: 30px;
+  background: rgba(22, 22, 22, 0.61);
+  margin-top: 0px;
+
+
+  .containerProfileUser{
+    right: 0;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    height: 75%;
+  }
+
+  p{
+    margin: auto 20px;
+    color: #ECDBBA;
+  }
+  bottom{
+    margin: auto 20px;
+  }
+}
+#objBlock{
+//  height: 230px;
+  display: flex;
+  text-align: center;
+}
+/*--------------------table links----------------------*/
+#tableLinksBlock{
+  margin: auto;
+  table-layout: fixed;
+  width: 70%;
+  border-collapse: collapse;
+}
+/*-----------------------------------------------------*/
+a{
+  color: rgba(15, 20, 30, 0.77);;
+  text-decoration: none;
+  &.active{
+    font-weight: bold;
+  }
+}
+a:hover {
+  font-weight: bold;
+}
+a:active{
+  font-weight: bold;
+}
+a:current{
+  color: #346751;
+}
+
+//------------------------------------------------------
+//------------------------------------------------------
+.btn{
+  width: 100px;
+  background: #346751;
+  border: none;
+  padding: 5px 5px;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 10px;
+
+  //color text
+  color: #ECDBBA;
+  font-size: 16px;
+
+}
+.btn:hover{
+  opacity: 0.8;
+}
+.btn:active{
+  background: #C84B31;
+}
+.logout{
+  background: #C84B31;
+}
+//------------------------------------------------------

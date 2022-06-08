@@ -1,0 +1,184 @@
+.container{
+  border: 1px solid rgba(22, 22, 22, 0.89);
+  border-radius: 5px;
+  margin: 5px;
+}
+.header-block{
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(71, 136, 109, 0.47);
+  margin: 0px auto;
+  h3{
+    margin: auto 0;
+    padding: 10px;
+  }
+}
+.container-information{
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0px auto;
+  background: #ECDBBA;
+  padding: 5px;
+  border-radius: 5px;
+
+  .block-info {
+    //border: 1px solid #346751;
+    padding: 5px;
+    margin: 0px 0px 5px 0px;
+    width: 50%;
+    display: flex;
+
+    p{
+      position: relative;
+      margin: 0;
+      padding: 0;
+      left: 2%;
+    }
+
+
+    .info-house-button {
+      width: 30px;
+      height: 20px;
+      border-radius: 3px;
+    }
+
+    .comfort-height {
+      background: rgba(108, 225, 176);
+    }
+
+    .comfort-middle {
+      background: rgb(255, 101, 46);
+    }
+
+    .comfort-middle-low {
+      background: rgb(255, 100, 243);
+    }
+
+    .comfort-low {
+      background: rgb(65, 154, 255);
+    }
+
+    .comfort-low-low {
+      background: rgb(210, 168, 137);
+    }
+  }
+}
+.map{
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0px auto;
+  padding: 5px;
+  background: rgba(211, 211, 211, 0.61);
+  z-index: 0;
+
+  img{
+    width: 100%;
+  }
+}
+
+.btn:hover{
+  opacity: 0.8;
+}
+.container-admin-back {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  width: 100%;
+  z-index: 1;
+
+
+  .container-admin {
+    width: 80%;
+    border: 1px solid rgba(15, 20, 30, 0.77);
+    border-radius: 5px;
+    background: #f1f1f1;
+    margin: 5px auto;
+    padding: 5px;
+    min-width: 800px;
+
+    .del-btn {
+      background: rgb(255, 195, 195);
+    }
+
+    .inputText {
+      display: block;
+
+      box-sizing: border-box;
+      border: 1px solid rgba(15, 20, 30, 0.77);
+      border-radius: 5px;
+      background: #f1f1f1;
+      color: rgba(15, 20, 30, 0.77);
+      padding: 10px 10px;
+      outline: none;
+      font-family: inherit;
+      user-focus: blue;
+      margin-bottom: 10px;
+    }
+
+    .container-horizontal-group {
+      display: flex;
+    }
+
+    .container-input-group {
+      padding: 5px;
+    }
+
+    .container-checkbox-group {
+      padding: 5px;
+      display: flex;
+    }
+    .container-range-group{
+      display: flex;
+      width: 100%;
+    }
+
+    .setting-object {
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
+.admin-setting-btn{
+  position: fixed;
+  right: 0px;
+  top: 0px;
+}
+//======================================================================================================================
+.btn-adm-set{
+  margin: 10px;
+  background: rgb(121, 121, 121);
+}
+.btn-horizontal-container{
+  margin-right: 10px;
+  background:rgb(121, 121, 121);
+}
+.btn-del{
+  background: #ff9090;
+}
+
+.input-field{
+  height: 60px;
+
+  .input-label{
+  }
+  .input-text{
+  }
+  .input-select{
+    z-index: 999999999999999;
+  }
+}
+.input-checkbox{
+  margin: auto 10px;
+}
+.input-range{
+  margin: auto 10px;
+  width: 100%;
+}
+.tab{
+  height: 200px;
+}
+
+

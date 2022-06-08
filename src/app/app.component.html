@@ -1,0 +1,100 @@
+<div class="main">
+  <div class="container">
+    <!--  ---------------------------------------------------------------------------------------------------------  -->
+    <div class="block topBlock">
+
+      <div><img src="../assets/resources/logoClub_gif.gif" alt="Логотип клуба Норманы.мсс"></div>
+      <div><h3> NORMANNY MCC</h3></div>
+      <div class="links">
+        <a routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/index']">Главная</a>
+        <a routerLinkActive="active"  (click)="clickMenuLinkInfo()">Инфо</a>
+        <a routerLinkActive="active" [routerLink]="['/pay']">Купить</a>
+        <a routerLinkActive="active" [routerLink]="['/contact']">Контакты</a>
+        <button *ngIf="!authServ.isAuthenticated()" type="button" [routerLink]="['/login']" class="btn">Войти</button>
+      </div>
+
+    </div>
+    <!--  ---------------------------------------------------------------------------------------------------------  -->
+    <div
+      [@blockProfileUser]
+      *ngIf="authServ.isAuthenticated()"
+      class="block blockProfileUser">
+      <div class="containerProfileUser">
+        <p class="userNameVue">Вы вошли как: {{authServ.nameAuthCurSasion}}</p>
+        <button type="button" [routerLink]="['/login']" class="btn">Профиль</button>
+        <button type="button" (click)="loginOutSubmit()" class="btn logout">Выйти</button>
+      </div>
+    </div>
+    <!--  ---------------------------------------------------------------------------------------------------------  -->
+<!--    <div class="block">-->
+<!--      <img id="mainImage" src="../assets/resources/logo_gif.gif" alt="Логотип Горыныч фест">-->
+<!--    </div>-->
+<!--    &lt;!&ndash;  -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;  &ndash;&gt;-->
+<!--    <div class="block" id="objBlock">-->
+<!--      <app-block-->
+<!--        *ngFor="let block of blocks"-->
+<!--        [block]="block"-->
+<!--        [routerLink]="[block.link]"-->
+<!--        [queryParams]="{'part': 'number', 'data': 'bold'}"-->
+<!--        [fragment]="'anyData'"-->
+<!--      ></app-block>-->
+<!--    </div>-->
+
+
+<!--    <button (click)="animate()">Анимация</button>-->
+<!--    <button (click)="boxState = 'special'">Анимация 2</button>-->
+<!--    <button (click)="boxEnable = !boxEnable">Вкл/выкл</button>-->
+<!--    <div-->
+<!--      [@box]="boxState"-->
+<!--      (@box.start) = "animationStart($event)"-->
+<!--      (@box.done) = "animationDone($event)"-->
+<!--      *ngIf="boxEnable"-->
+<!--      class="box">-->
+<!--      <p>Lorem ipsum dolor sit amet.</p>-->
+<!--    </div>-->
+
+<!--    <button (click)="anima()">Анимация</button>-->
+<!--    <div [@bounce] *ngIf="bounceEnable"-->
+<!--      class="bounce">-->
+<!--      <p>Lorem ipsum dolor sit amet.</p>-->
+<!--    </div>-->
+
+    <!--  ---------------------------------------------------------------------------------------------------------  -->
+    <!--  ---------------------------------------------------------------------------------------------------------  -->
+    <div class="block">
+      <router-outlet></router-outlet>
+    </div>
+    <!--  ---------------------------------------------------------------------------------------------------------  -->
+    <!--  ---------------------------------------------------------------------------------------------------------  -->
+    <div class="block tableBlockIndex">
+      <table  id="tableLinksBlock" >
+        <tr>
+          <td><ul type="none">
+            <li><a href=""> О фестивале </a></li>
+            <li><a href=""> Музыка </a></li>
+            <li><a href=""> Конкурсы </a></li>
+            <li><a href=""> Розыграши </a></li>
+            <li><a href=""> Спорт </a></li>
+            <li><a href=""> Пляж </a></li>
+          </ul></td>
+          <td><ul type="none">
+            <li><a href=""> Еда </a></li>
+            <li><a href=""> Бар </a></li>
+            <li><a href=""> Жилье </a></li>
+            <li><a href=""> Регистрация </a></li>
+            <li><a href=""> Контакты </a></li>
+            <li><a href=""> Локация </a></li>
+          </ul></td>
+        </tr>
+      </table>
+    </div>
+    <h5 align="center"> NORMANNY MCC  |  2022</h5>
+  </div>
+</div>
+
+
+
+
+
+
+

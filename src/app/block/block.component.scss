@@ -1,0 +1,19 @@
+.blockInObj{
+  height: 250px;
+  /*width: 150px;*/
+  /*float: left;*/
+  padding: 1px 20px;
+  background: #C84B31;
+  margin: 5px 5px 5px 5px;
+  border-radius: 5px;
+}
+
+.blockInObj:hover{
+  background: rgba(154, 91, 74, 0.66);
+}
+.blockInObj:active{
+  background: rgba(157, 102, 91, 0.7);
+}
+img{
+  width: 100%;
+}

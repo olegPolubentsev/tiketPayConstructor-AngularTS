@@ -1,0 +1,75 @@
+.container{
+
+}
+.block{
+  border: 1px solid rgba(124, 124, 124, 0.84);
+  border-radius: 5px;
+  padding: 20px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  position: relative;
+
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  .butDiv{
+
+    text-align: center;
+    display: flex;
+    margin: auto;
+    button{
+      margin: 20px auto;
+    }
+  }
+}
+//------------------------------------------------------
+.btn{
+  width: 10rem;
+  background: #346751;
+  border: none;
+  padding: 15px 20px;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 5px;
+
+  //color text
+  color: #f1f1f1;
+  font-size: 16px;
+
+}
+.btn:hover{
+  opacity: 0.8;
+}
+.btn:active{
+  background: #C84B31;
+}
+.btn:disabled{
+  background: rgba(124, 124, 124, 0.84);
+}
+//------------------------------------------------------
+.formInputText{
+  display: block;
+  margin: 10px 10px 10px 0px;
+  width: 100%;
+
+  box-sizing: border-box;
+  border: 1px solid rgba(124, 124, 124, 0.84);
+  border-radius: 5px;
+  background: transparent;
+  color: black;
+  padding: 15px 10px;
+  outline: none;
+  font-family: inherit;
+  user-focus: blue;
+}
+input{
+  &.ng-invalid.ng-touched {
+    background: rgba(199,115,115,0.42);
+  }
+  &.ng-valid.ng-touched{
+    background: rgba(139, 199, 115, 0.42);
+  }
+}
+//------------------------------------------------------

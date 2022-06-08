@@ -1,0 +1,82 @@
+.blockInHttp{
+  background: rgba(88, 124, 88, 0.38);
+  border-radius: 5px;
+  margin-top: 5px;
+  h3, small{
+    padding: 5px;
+    margin: 0px;
+  }
+}
+.blockError{
+  background: rgba(199,115,115,0.42);
+  h3, small{
+    color: rgba(68, 0, 8, 0.73);
+  }
+}
+//------------------------------------------------------
+form{
+  margin-bottom: 15px;
+  border: solid 1px rgba(124, 124, 124, 0.84);
+  border-radius: 5px;
+  padding: 7px;
+  h3{
+    padding: 0px;
+    margin: 0px;
+  }
+}
+//------------------------------------------------------
+.formInputText{
+  display: block;
+  margin: 10px 10px 10px 0px;
+  width: 50%;
+
+  box-sizing: border-box;
+  border: 1px solid rgba(124, 124, 124, 0.84);
+  border-radius: 5px;
+  background: transparent;
+  color: black;
+  padding: 15px 10px;
+  outline: none;
+  font-family: inherit;
+  user-focus: blue;
+}
+input{
+  &.ng-invalid.ng-touched {
+    background: rgba(199,115,115,0.42);
+  }
+  &.ng-valid.ng-touched{
+    background: rgba(139, 199, 115, 0.42);
+  }
+}
+//------------------------------------------------------
+.btn{
+  width: 10rem;
+  background: #346751;
+  border: none;
+  padding: 15px 20px;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 5px;
+
+  //color text
+  color: #f1f1f1;
+  font-size: 16px;
+
+}
+.btn:hover{
+  opacity: 0.8;
+}
+.btn:active{
+  background: rgba(255, 106, 0, 0.9);
+}
+.btnUser{
+  padding: 5px 5px;
+  margin: 5px;
+  width: auto;
+  background: rgba(88, 124, 88, 0.38);
+}
+.btnDell
+{
+  background: rgba(255, 70, 103, 0.6);
+}
+//------------------------------------------------------

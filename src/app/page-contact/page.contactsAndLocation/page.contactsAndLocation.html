@@ -1,0 +1,68 @@
+<div class="pageCL-container">
+  <div class="pageCL-containerInput">
+    <h3>Связаться с организаторами</h3>
+
+    <input type="text" class="inputEnterContactData"
+           appStyleFieldMessage
+           #titleNameInput
+           [(ngModel)] = "firstName"
+           (blur)="checkInputError('firstName')"
+           placeholder="{{textPlaceholderFirstName}}"
+           [ngStyle]="{ background: firstNameFlagErr ? 'rgba(199, 115, 115, 0.29)' : 'transparent'}"
+           [appStyleFieldMessageInput]="{flagError: firstNameFlagErr, colorErr: 'rgba(199,115,115,0.42)', colorNormal: 'rgba(124,124,124,0.24)', colorErrDefault: 'rgba(199, 115, 115, 0.29)'}"
+           >
+
+    <input type="text" class="inputEnterContactData"
+           appStyleFieldMessage
+           [appStyleFieldMessageInput]="{flagError: false, colorNormal: 'rgba(124,124,124,0.24)'}"
+           [(ngModel)] = "lastName"
+           placeholder="{{textPlaceholderLastName}}">
+    <input type="email" class="inputEnterContactData"
+           appStyleFieldMessage
+           [appStyleFieldMessageInput]="{flagError: false, colorNormal: 'rgba(124,124,124,0.24)'}"
+           [(ngModel)] = "email"
+           placeholder="{{textPlaceholderEmail}}">
+    <input type="tel" class="inputEnterContactData" id="inpTell"
+           maxlength="17"
+           appStyleFieldMessage
+           [ngStyle]="{ background: tellFlagErr ? 'rgba(199, 115, 115, 0.29)' : 'transparent'}"
+           [appStyleFieldMessageInput]="{flagError: tellFlagErr, colorErr: 'rgba(199,115,115,0.42)', colorNormal: 'rgba(124,124,124,0.24)', colorErrDefault: 'rgba(199, 115, 115, 0.29)'}"
+           [(ngModel)] = "tell"
+           value="{{tell | telFormat}}"
+           (blur)="checkInputError('tell')"
+           placeholder="{{textPlaceholderTell}}">
+
+    <h5 [ngStyle]="{
+    color: flagError ? 'red' : 'rgba(15, 20, 30, 0.77)'}"
+        *ngFor="let title of arrOutErr"
+    >{{title}}</h5>
+
+    <button class="btn" (click)="btnContactDataCallback()"> Отправить </button>
+  </div>
+  <div class="pageCL-containerPreview">
+    <h4>Ваше сообщение...</h4>
+    <textarea class="inputEnterContactData"
+              [ngStyle]="{ background: messageFlagErr ? 'rgba(199, 115, 115, 0.29)' : 'transparent'}"
+              #titleTextAreaMessage
+              (blur)="checkInputError('message')"
+              [(ngModel)]="message" placeholder="Сообщение..."
+              appStyleFieldMessage
+              [appStyleFieldMessageInput]="{flagError: messageFlagErr, colorErr: 'rgba(199,115,115,0.42)', colorNormal: 'rgba(124,124,124,0.24)', colorErrDefault: 'rgba(199, 115, 115, 0.29)'}">
+    </textarea>
+
+    <input type="checkbox" id="noTelMe" value="noTelMe" [(ngModel)]="flNoTelMe" checked>
+    <label for="noTelMe"> Не перезванивать мне</label>y
+    <br>
+    <input type="checkbox" id="TelMeTelegram" value="noTelMe" [(ngModel)]="flTelegram" >
+    <label for="TelMeTelegram"> Ответить мне в Telegram</label>
+    <br>
+    <input type="checkbox" id="TelMeViber" value="noTelMe" [(ngModel)]="flViber" >
+    <label for="TelMeViber"> Ответить мне в Viber</label>
+    <br>
+    <input type="checkbox" id="TelMeeEmail" value="noTelMe" [(ngModel)]="flEmail" checked >
+    <label for="TelMeeEmail"> Ответить мне на eMail</label>
+
+
+    <input type="file" class="inputEnterContactData">
+  </div>
+</div>

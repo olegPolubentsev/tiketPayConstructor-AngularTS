@@ -1,0 +1,38 @@
+<a [routerLink]="['','extra']">Бльше</a>
+<router-outlet></router-outlet>
+
+<h2>Пользователи</h2>
+
+<form [formGroup]="forms" (ngSubmit)="addUser()">
+  <h3>Новый участник</h3>
+  <input type="text" class="formInputText" [(ngModel)]="newName" formControlName = "name" placeholder="Имя">
+  <button class="btn btnAdd" type="submit" [disabled]="forms.invalid" >Добавить</button>
+</form>
+
+<div class="blockInHttp blockError" *ngIf="error.trim()">
+  <h3>Ошибка</h3>
+  <small>{{error}}</small>
+</div>
+
+  <div *ngIf="!loading; else loadingBlock">
+    <div *ngIf="users.length !== 0; else falseContent">
+      <div class="blockInHttp"
+        *ngFor="let user of users; let idx = index">
+        <h3>User {{user.id}}</h3>
+        <small>Имя: {{user.name}}</small><br>
+        <small>Имя пользователя: {{user.username}}</small><br>
+        <small>eMail: {{user.email}}</small><br>
+        <button class="btn btnUser" type="button">Выбрать</button>
+        <button class="btn btnUser btnDell" type="button" (click)="dellUser(user.id)">Удалить</button>
+
+      </div>
+    </div>
+    <ng-template #falseContent>
+      <h3>Нет ни одного пользователя...</h3>
+    </ng-template>
+  </div>
+  <ng-template #loadingBlock>
+    <h3>Загрузка...</h3>
+  </ng-template>
+
+

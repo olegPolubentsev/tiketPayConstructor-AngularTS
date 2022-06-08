@@ -1,0 +1,18 @@
+<ng-template
+  #dynamicMes
+></ng-template>
+
+<div class="container">
+  <form class="block" [formGroup]="form" (ngSubmit)="submitButtonLogin()">
+    <h2>Войти в аккаунт</h2>
+    <p>Введите ваш eMail</p>
+    <input type="email" class="formInputText" formControlName="userName" placeholder="eMail...">
+    <p>Введите ваш пароль</p>
+    <input type="password" class="formInputText" formControlName="password" placeholder="пароль...">
+    <div class="butDiv">
+      <button type="button" class="btn" (click)="rigistrationSubmit()">Регистрация</button>
+      <button type="submit" class="btn" [disabled]="form.invalid">Войти</button>
+    </div>
+
+  </form>
+</div>

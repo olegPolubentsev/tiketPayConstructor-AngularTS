@@ -1,0 +1,32 @@
+.container {
+  padding: 5px;
+}
+.box {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  jastifi-content: center;
+  background: rgba(0,0,0,.3);
+}
+
+.btn{
+  margin: 5px 0px;
+  width: 10rem;
+  background: rgba(255, 128, 0, 0.55);;
+  border: none;
+  padding: 15px 20px;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 5px;
+  p{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    color: rgba(15, 20, 30, 0.77);
+  }
+
+}
+.btn:hover{
+  opacity: 0.8;
+}

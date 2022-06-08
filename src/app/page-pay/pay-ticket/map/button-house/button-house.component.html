@@ -1,0 +1,12 @@
+<button
+  class="main {{classComfort}} {{classOccupied}} {{classSize}}"
+  [style.top]="house.position.top"
+  [style.left]="house.position.left"
+
+  style="transform: rotate({{house.position.rotation}});"
+  (click)="clickOnObject()"
+
+>{{house.numberPlaces}}</button>
+
+
+
