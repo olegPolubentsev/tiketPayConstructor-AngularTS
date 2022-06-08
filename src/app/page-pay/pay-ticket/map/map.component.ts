@@ -223,8 +223,8 @@ export class MapComponent implements OnInit {
     }
     this.buttonHouseList.pop()
     this.flagStatusChangeMap = 'non'
-    this.objectService.deleteObject('-N4371q7yDzlxRzpGo_d').subscribe(()=>{
-      console.log('del')})
+    // this.objectService.deleteObject('-N4371q7yDzlxRzpGo_d').subscribe(()=>{
+    //   console.log('del')})
   }
   changeTypeObject() {
     this.buttonHouseList[this.indexListAddChange].type = this.inputNewObject.type
