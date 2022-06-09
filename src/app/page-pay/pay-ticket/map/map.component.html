@@ -21,8 +21,7 @@
           <mat-form-field appearance="fill"  class="input-field">
             <mat-label class="input-label">Тип объекта:</mat-label>
             <mat-select class="input-select"
-                        [(ngModel)]="inputNewObject.type"
-                        (ngModelChange)="changeTypeObject()">
+                        [(ngModel)]="buttonHouseList[indexListAddChange].type">
               <mat-option *ngFor="let object of objects" [value]="object.value" class="input-select">
                 {{object.viewValue}}
               </mat-option>
@@ -40,8 +39,7 @@
             <mat-form-field appearance="fill" class="input-field">
               <mat-label class="input-label">№ объекта:</mat-label>
               <input matInput placeholder="Введите номер..."
-                     [(ngModel)]="inputNewObject.numObj"
-                     (ngModelChange)="changeIdObject()"
+                     [(ngModel)]="buttonHouseList[indexListAddChange].numObj"
                      class="input-text">
             </mat-form-field>
         </div>
@@ -50,7 +48,7 @@
           <mat-form-field  appearance="fill" class="input-field">
             <mat-label class="input-label">Кол-во мест:</mat-label>
             <input matInput placeholder="Мест в домике..."
-                   [(ngModel)]="inputNewObject.numberPlaces"
+                   [(ngModel)]="buttonHouseList[indexListAddChange].numberPlaces"
                    (ngModelChange)="changeNumberPlacesObject()"
                    class="input-text">
           </mat-form-field>
@@ -61,7 +59,7 @@
             <mat-label class="input-label">Комфорт:</mat-label>
             <mat-select class="input-select"
                         placeholder="111"
-                        [(ngModel)]="inputNewObject.comfort"
+                        [(ngModel)]="buttonHouseList[indexListAddChange].comfort"
                         (ngModelChange)="changeComfortObject()">
               <mat-option *ngFor="let comfPos of comfortPos" [value]="comfPos.value" class="input-select">
                 {{comfPos.viewValue}}
@@ -72,7 +70,7 @@
 
         <div class="container-checkbox-group" *ngIf="buttonHouseList[indexListAddChange].type === 'house' || buttonHouseList[indexListAddChange].type === 'place'">
           <mat-checkbox class="input-checkbox"
-                        [(ngModel)]="inputNewObject.occupied"
+                        [(ngModel)]="buttonHouseList[indexListAddChange].occupied"
                         (ngModelChange)="changeOccupiedObject()">
             Занят
           </mat-checkbox>
@@ -88,8 +86,7 @@
           <mat-form-field  appearance="fill" class="input-field">
             <mat-label class="input-label">По горизонтали:</mat-label>
             <input matInput placeholder="Мест в домике..."
-                   [(ngModel)]="inputNewObject.position.left"
-                   (ngModelChange)="changeHorizontalPositionObject()"
+                   [(ngModel)]="buttonHouseList[indexListAddChange].position.left"
                    class="input-text">
           </mat-form-field>
         </div>
@@ -100,8 +97,7 @@
           min="0"
           max="100"
           step="0.01"
-          [(ngModel)]="inputNewObject.position.left"
-          (ngModelChange)="changeHorizontalPositionObject()">
+          [(ngModel)]="buttonHouseList[indexListAddChange].position.left">
         </div>
       </div>
   <!--------------------------------------------------------------------------------------------------------------------->
@@ -110,8 +106,7 @@
           <mat-form-field  appearance="fill" class="input-field">
             <mat-label class="input-label">По вертикали:</mat-label>
             <input matInput placeholder="Мест в домике..."
-                   [(ngModel)]="inputNewObject.position.top"
-                   (ngModelChange)="changeVerticalPositionObject()"
+                   [(ngModel)]="buttonHouseList[indexListAddChange].position.top"
                    class="input-text">
           </mat-form-field>
         </div>
@@ -122,8 +117,7 @@
             min="0"
             max="100"
             step="0.01"
-            [(ngModel)]="inputNewObject.position.top"
-            (ngModelChange)="changeVerticalPositionObject()">
+            [(ngModel)]="buttonHouseList[indexListAddChange].position.top">
         </div>
       </div>
       <!--------------------------------------------------------------------------------------------------------------------->
@@ -132,8 +126,7 @@
           <mat-form-field  appearance="fill" class="input-field">
             <mat-label class="input-label">Поворот:</mat-label>
             <input matInput placeholder="Мест в домике..."
-                   [(ngModel)]="inputNewObject.position.rotation"
-                   (ngModelChange)="changeRotationPositionObject()"
+                   [(ngModel)]="buttonHouseList[indexListAddChange].position.rotation"
                    class="input-text">
           </mat-form-field>
         </div>
@@ -144,14 +137,13 @@
             min="-180"
             max="180"
             step="0.01"
-            [(ngModel)]="inputNewObject.position.rotation"
-            (ngModelChange)="changeRotationPositionObject()">
+            [(ngModel)]="buttonHouseList[indexListAddChange].position.rotation">
         </div>
       </div>
   <!--------------------------------------------------------------------------------------------------------------------->
     </div>
     <div class="container-horizontal-group" *ngIf="flagStatusChangeMap != 'non' ">
-      <button mat-raised-button color="warn" (click)="saveNewObject()" class="btn-horizontal-container" *ngIf="flagStatusChangeMap != 'waitClickForObject' ">Ok</button>
+      <button mat-raised-button color="warn" (click)="saveNewObject()" class="btn-horizontal-container" *ngIf="flagStatusChangeMap != 'waitClickForObject' ">Сохранить</button>
       <button mat-raised-button color="warn" (click)="cancelNewObject()" class="btn-horizontal-container">Отменить</button>
       <button mat-raised-button color="warn" (click)="deleteObject()" class="btn-horizontal-container btn-del" *ngIf="flagStatusChangeMap === 'changeObject' ">Удалить</button>
       <button mat-raised-button (click)="settingObject()" class="btn-horizontal-container btn-del" *ngIf="flagStatusChangeMap === 'addNewObject' ">Дополнительно</button>

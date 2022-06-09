@@ -4,7 +4,7 @@ import {
   ViewChild, ViewContainerRef
 } from '@angular/core';
 import {DynamicComponent} from "../dynamic/dynamic.component";
-import {ButtonHouse, ButtonHouseTemplate, SelectField} from "./interfases";
+import {ButtonHouse, SelectField} from "./interfases";
 import {ObjectsService} from "./objects.service";
 
 
@@ -22,14 +22,14 @@ export class MapComponent implements OnInit {
 
   inputNewObject: ButtonHouse = {
     type: 'house',
-    numObj: 1,
+    numObj: '1',
     position: {
       top: '0',
       left: '0',
       rotation: '0'
     },
-    numberPlaces: 2,
-    comfort: 4,
+    numberPlaces: '2',
+    comfort: '4',
     occupied: false,
     size: {
       width: '0',
@@ -63,14 +63,14 @@ export class MapComponent implements OnInit {
 
   reservSaveObject: ButtonHouse = {
     type: 'house',
-    numObj: 1,
+    numObj: '1',
     position: {
       top: '0',
       left: '0',
       rotation: '0'
     },
-    numberPlaces: 2,
-    comfort: 4,
+    numberPlaces: '2',
+    comfort: '4',
     occupied: false,
     size: {
       width: '0',
@@ -98,7 +98,6 @@ export class MapComponent implements OnInit {
   ngOnInit(): void {
     this.objectService.getAllObject().subscribe(response => {
       this.buttonHouseList = response
-      console.log(response)
     })
   }
 
@@ -109,9 +108,9 @@ export class MapComponent implements OnInit {
   addNewObjectToTempArray(){
     let newHouse: ButtonHouse
     if(this.buttonHouseList.length > 0) {
-      this.inputNewObject.numObj = this.buttonHouseList[this.buttonHouseList.length - 1].numObj + 1
+      this.inputNewObject.numObj = (+this.buttonHouseList[this.buttonHouseList.length - 1].numObj + 1).toString()
     }
-    else this.inputNewObject.numObj = 1
+    else this.inputNewObject.numObj = '1'
 
     newHouse = {
       name: '',
@@ -119,8 +118,8 @@ export class MapComponent implements OnInit {
       type: this.inputNewObject.type,
       numObj: this.inputNewObject.numObj,
       occupied: false,
-      comfort: +this.inputNewObject.comfort,
-      numberPlaces: +this.inputNewObject.numberPlaces,
+      comfort: this.inputNewObject.comfort,
+      numberPlaces: this.inputNewObject.numberPlaces,
       position: {
         top: `${+this.inputNewObject.position.top}%`,
         left: `${+this.inputNewObject.position.left}%`,
@@ -155,91 +154,52 @@ export class MapComponent implements OnInit {
       this.flagStatusChangeMap = 'non'
     }
     if(this.flagStatusChangeMap === 'changeObject') {
-
-      this.buttonHouseList[this.indexListAddChange].numObj = this.reservSaveObject.numObj
-      this.buttonHouseList[this.indexListAddChange].comfort = this.reservSaveObject.comfort
-      this.buttonHouseList[this.indexListAddChange].position.top = this.reservSaveObject.position.top
-      this.buttonHouseList[this.indexListAddChange].position.left = this.reservSaveObject.position.left
-      this.buttonHouseList[this.indexListAddChange].position.rotation = this.reservSaveObject.position.rotation
-      this.buttonHouseList[this.indexListAddChange].numberPlaces = this.reservSaveObject.numberPlaces
-      this.fillChangingField()
+      this.unFillReserveContainer()
     }
 
   }
   deleteObject() {
-    for(let i = this.indexListAddChange; i < this.buttonHouseList.length-1; ++i){
-      this.buttonHouseList[i] = this.buttonHouseList[i+1]
-    }
-    this.buttonHouseList.pop()
+    this.buttonHouseList = this.buttonHouseList.filter(element => {
+      if(element.name !== this.buttonHouseList[this.indexListAddChange].name){
+        return element
+      }
+      else{
+        this.objectService.deleteObject(element.name).subscribe(()=>{
+          console.log('Delete this object')})
+      }
+    })
     this.flagStatusChangeMap = 'non'
-    // this.objectService.deleteObject('-N4371q7yDzlxRzpGo_d').subscribe(()=>{
-    //   console.log('del')})
+
   }
   changePictureObject(event: any) {
     //this.buttonHouseList[this.indexListAddChange].img = <File>event.target.files[0]
   }
-  changeTypeObject() {
-    this.buttonHouseList[this.indexListAddChange].type = this.inputNewObject.type
-  }
-  changeHorizontalPositionObject() {
-    this.buttonHouseList[this.indexListAddChange].position.left = `${+this.inputNewObject.position.left}%`
-  }
-  changeVerticalPositionObject() {
-    this.buttonHouseList[this.indexListAddChange].position.top = `${+this.inputNewObject.position.top}%`
-  }
-  changeRotationPositionObject() {
-    this.buttonHouseList[this.indexListAddChange].position.rotation = `${+this.inputNewObject.position.rotation}deg`
-  }
-  changeIdObject() {
-    this.buttonHouseList[this.indexListAddChange].numObj = +this.inputNewObject.numObj
-  }
   changeNumberPlacesObject() {
-    this.buttonHouseList[this.indexListAddChange].numberPlaces = +this.inputNewObject.numberPlaces
     this.buttonHouseList[this.indexListAddChange].style.change = true
   }
   changeComfortObject() {
-    this.buttonHouseList[this.indexListAddChange].comfort = +this.inputNewObject.comfort
     this.buttonHouseList[this.indexListAddChange].style.change = true
   }
   changeOccupiedObject() {
-    this.buttonHouseList[this.indexListAddChange].occupied = this.inputNewObject.occupied
     this.buttonHouseList[this.indexListAddChange].style.change = true
   }
 
   handlerChange(event: ButtonHouse) {
     if(this.flagStatusChangeMap === 'waitClickForObject' || this.flagStatusChangeMap === 'changeObject'){
       this.indexListAddChange = this.findClickObject(event)
-      this.fillChangingField()
-
-      this.reservSaveObject.numObj = this.buttonHouseList[this.indexListAddChange].numObj
-      this.reservSaveObject.comfort = this.buttonHouseList[this.indexListAddChange].comfort
-      this.reservSaveObject.position.top = this.buttonHouseList[this.indexListAddChange].position.top
-      this.reservSaveObject.position.left = this.buttonHouseList[this.indexListAddChange].position.left
-      this.reservSaveObject.position.rotation = this.buttonHouseList[this.indexListAddChange].position.rotation
-      this.reservSaveObject.numberPlaces = this.buttonHouseList[this.indexListAddChange].numberPlaces
-
+      this.fillReserveContainer()
       this.flagStatusChangeMap = 'changeObject'
     }
-    if(this.flagStatusChangeMap === 'non'){
+    else if(this.flagStatusChangeMap === 'non'){
       this.showModel(event)
     }
   }
 
-  fillChangingField() {
-    this.inputNewObject.position.left = this.buttonHouseList[this.indexListAddChange].position.left
-    this.inputNewObject.position.top = this.buttonHouseList[this.indexListAddChange].position.top
-    this.inputNewObject.position.rotation = this.buttonHouseList[this.indexListAddChange].position.rotation
-    this.inputNewObject.numObj = this.buttonHouseList[this.indexListAddChange].numObj
-    this.inputNewObject.comfort = this.buttonHouseList[this.indexListAddChange].comfort
-    this.inputNewObject.numberPlaces = this.buttonHouseList[this.indexListAddChange].numberPlaces
-    // @ts-ignore
-    this.inputNewObject.type = this.buttonHouseList[this.indexListAddChange].type
-  }
+
 
   findClickObject(clickObj: ButtonHouse){
-    const changObjectId = clickObj.numObj
     for (let i = 0; i < this.buttonHouseList.length; ++i){
-      if(this.buttonHouseList[i].numObj === changObjectId) {
+      if(this.buttonHouseList[i].name === clickObj.name) {
         return i
       }
     }
@@ -249,7 +209,6 @@ export class MapComponent implements OnInit {
   ChangeObjectOnMap() {
     this.flagStatusChangeMap = 'waitClickForObject'
   }
-
 
   showModel(obj: ButtonHouse) {
     this.reservSaveObject = obj
@@ -265,7 +224,42 @@ export class MapComponent implements OnInit {
     this.flagAdditionalSetting = true
   }
 
-  enterFileOnLocal() {
-
+  fillReserveContainer() {
+    this.reservSaveObject.type = this.buttonHouseList[this.indexListAddChange].type
+    this.reservSaveObject.numObj = this.buttonHouseList[this.indexListAddChange].numObj
+    this.reservSaveObject.comfort = this.buttonHouseList[this.indexListAddChange].comfort
+    this.reservSaveObject.occupied = this.buttonHouseList[this.indexListAddChange].occupied
+    this.reservSaveObject.numberPlaces = this.buttonHouseList[this.indexListAddChange].numberPlaces
+    this.reservSaveObject.size.width = this.buttonHouseList[this.indexListAddChange].size.width
+    this.reservSaveObject.size.height = this.buttonHouseList[this.indexListAddChange].size.height
+    this.reservSaveObject.position.left = this.buttonHouseList[this.indexListAddChange].position.left
+    this.reservSaveObject.position.top = this.buttonHouseList[this.indexListAddChange].position.top
+    this.reservSaveObject.position.rotation = this.buttonHouseList[this.indexListAddChange].position.rotation
+    this.reservSaveObject.style.change = this.buttonHouseList[this.indexListAddChange].style.change
+    this.reservSaveObject.style.display = this.buttonHouseList[this.indexListAddChange].style.display
+    this.reservSaveObject.style.background = this.buttonHouseList[this.indexListAddChange].style.background
+    this.reservSaveObject.text = this.buttonHouseList[this.indexListAddChange].text
+    this.reservSaveObject.color = this.buttonHouseList[this.indexListAddChange].color
+    this.reservSaveObject.fontSize = this.buttonHouseList[this.indexListAddChange].fontSize
+    this.reservSaveObject.img = this.buttonHouseList[this.indexListAddChange].img
+  }
+  unFillReserveContainer() {
+    this.buttonHouseList[this.indexListAddChange].type = this.reservSaveObject.type
+    this.buttonHouseList[this.indexListAddChange].numObj = this.reservSaveObject.numObj
+    this.buttonHouseList[this.indexListAddChange].comfort = this.reservSaveObject.comfort
+    this.buttonHouseList[this.indexListAddChange].occupied = this.reservSaveObject.occupied
+    this.buttonHouseList[this.indexListAddChange].numberPlaces = this.reservSaveObject.numberPlaces
+    this.buttonHouseList[this.indexListAddChange].size.width = this.reservSaveObject.size.width
+    this.buttonHouseList[this.indexListAddChange].size.height = this.reservSaveObject.size.height
+    this.buttonHouseList[this.indexListAddChange].position.left = this.reservSaveObject.position.left
+    this.buttonHouseList[this.indexListAddChange].position.top = this.reservSaveObject.position.top
+    this.buttonHouseList[this.indexListAddChange].position.rotation = this.reservSaveObject.position.rotation
+    this.buttonHouseList[this.indexListAddChange].style.change = this.reservSaveObject.style.change
+    this.buttonHouseList[this.indexListAddChange].style.display = this.reservSaveObject.style.display
+    this.buttonHouseList[this.indexListAddChange].style.background = this.reservSaveObject.style.background
+    this.buttonHouseList[this.indexListAddChange].text = this.reservSaveObject.text
+    this.buttonHouseList[this.indexListAddChange].color = this.reservSaveObject.color
+    this.buttonHouseList[this.indexListAddChange].fontSize = this.reservSaveObject.fontSize
+    this.buttonHouseList[this.indexListAddChange].img = this.reservSaveObject.img
   }
 }

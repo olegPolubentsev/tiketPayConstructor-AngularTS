@@ -1,4 +1,20 @@
-// import {ButtonHouseTemplate} from "./interfases";
+// export interface ButtonHouseTemplate{
+//
+//   id: number,
+//   occupied: boolean,
+//   comfort: number,
+//   numberPlaces: number,
+//   position: {
+//     top: string,
+//     left: string,
+//     rotation: string
+//   }
+//   style: {
+//     background: string
+//     display: boolean
+//     change: boolean
+//   }
+// }
 //
 // bhList: ButtonHouseTemplate[] = [
 //   {id: 1, occupied: false, comfort: 1, numberPlaces: 12, position: {top: '9%', left: '26%', rotation: '-10deg'}, style: {background: 'grey', display: true, change: false}},

@@ -33,8 +33,8 @@ export class ButtonHouseComponent implements OnInit {
     this.determineClassOccupied(this.house.occupied)
   }
 
-  private determineClassComfort(input: number){
-    switch (input){
+  private determineClassComfort(input: string){
+    switch (+input){
       case 1:
         this.classComfort = 'comfort-height'
         break
@@ -55,8 +55,8 @@ export class ButtonHouseComponent implements OnInit {
         break
     }
   }
-  private determineClassSize(input: number){
-    switch (input){
+  private determineClassSize(input: string){
+    switch (+input){
       case 12:
         this.classSize = 'size-big'
         break
