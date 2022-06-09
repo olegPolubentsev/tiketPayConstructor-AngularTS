@@ -1,7 +1,20 @@
 <button
-  class="main {{classComfort}} {{classOccupied}} {{classSize}}"
+  class="main"
+
+  [ngClass]="{
+  'house-occupied': house.occupied === true,
+  'comfort-height': house.comfort == '1',
+  'comfort-middle': house.comfort == '2',
+  'comfort-middle-low': house.comfort == '3',
+  'comfort-low': house.comfort == '4',
+  'comfort-low-low': house.comfort == '5'
+  }"
+
   [style.top]="house.position.top + '%'"
   [style.left]="house.position.left + '%'"
+  [style.width]="house.size.width + '%'"
+  [style.height]="house.size.height + '%'"
+
 
   style="transform: rotate({{house.position.rotation + 'deg'}});"
   (click)="clickOnObject()"

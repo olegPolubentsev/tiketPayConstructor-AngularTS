@@ -109,7 +109,6 @@ export class MapService implements OnInit{
       this.flagStatusChangeMap = 'non'
     }
     if(this.flagStatusChangeMap === 'changeObject') {
-      console.log(this.buttonHouseList[this.indexListAddChange])
       this.objectService.updateObject(this.buttonHouseList[this.indexListAddChange]).subscribe(() => {
         console.log('Objet changes and update in DB')
       })

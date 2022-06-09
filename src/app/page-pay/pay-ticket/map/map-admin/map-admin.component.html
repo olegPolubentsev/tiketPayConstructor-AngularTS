@@ -13,7 +13,9 @@
       <p>Выбирите объект для редактирования...</p>
     </div>
     <!----------------------------------------------------------------------------------------------------------------->
-    <div *ngIf="mapService.flagAdditionalSetting">
+    <!----------------------------------------------------------------------------------------------------------------->
+    <div class="setting-object" *ngIf="mapService.flagStatusChangeMap != 'non' && mapService.flagStatusChangeMap != 'waitClickForObject'">
+
       <div class="container-horizontal-group">
         <div class="container-input-group">
           <mat-form-field appearance="fill"  class="input-field">
@@ -27,10 +29,9 @@
           </mat-form-field>
         </div>
       </div>
+
       <hr>
-    </div>
-    <!----------------------------------------------------------------------------------------------------------------->
-    <div class="setting-object" *ngIf="mapService.flagStatusChangeMap != 'non' && mapService.flagStatusChangeMap != 'waitClickForObject'">
+
       <div class="container-horizontal-group">
 
         <div class="container-input-group">
