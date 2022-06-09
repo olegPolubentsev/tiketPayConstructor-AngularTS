@@ -1,0 +1,150 @@
+<div class="container-admin">
+  <div class="container-horizontal-group"  *ngIf="mapService.flagStatusChangeMap === 'non' ">
+    <button mat-raised-button color="warn" (click)="mapService.addObjectOnMap()" class="btn-horizontal-container">Добавить</button>
+    <button mat-raised-button color="warn" (click)="mapService.ChangeObjectOnMap()" class="btn-horizontal-container">Изменить</button>
+  </div>
+</div>
+<div class="tab" *ngIf="mapService.flagStatusChangeMap != 'non'"></div>
+<!--=================================================================================================================-->
+<div class="container-admin-back"  *ngIf="mapService.flagStatusChangeMap != 'non'">
+  <div class="container-admin">
+    <!----------------------------------------------------------------------------------------------------------------->
+    <div *ngIf="mapService.flagStatusChangeMap === 'waitClickForObject'">
+      <p>Выбирите объект для редактирования...</p>
+    </div>
+    <!----------------------------------------------------------------------------------------------------------------->
+    <div *ngIf="mapService.flagAdditionalSetting">
+      <div class="container-horizontal-group">
+        <div class="container-input-group">
+          <mat-form-field appearance="fill"  class="input-field">
+            <mat-label class="input-label">Тип объекта:</mat-label>
+            <mat-select class="input-select"
+                        [(ngModel)]="mapService.buttonHouseList[mapService.indexListAddChange].type">
+              <mat-option *ngFor="let object of mapService.objects" [value]="object.value" class="input-select">
+                {{object.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <!----------------------------------------------------------------------------------------------------------------->
+    <div class="setting-object" *ngIf="mapService.flagStatusChangeMap != 'non' && mapService.flagStatusChangeMap != 'waitClickForObject'">
+      <div class="container-horizontal-group">
+
+        <div class="container-input-group">
+          <mat-form-field appearance="fill" class="input-field">
+            <mat-label class="input-label">№ объекта:</mat-label>
+            <input matInput placeholder="Введите номер..."
+                   [(ngModel)]="mapService.buttonHouseList[mapService.indexListAddChange].numObj"
+                   class="input-text">
+          </mat-form-field>
+        </div>
+
+        <div class="container-input-group" *ngIf="mapService.buttonHouseList[mapService.indexListAddChange].type === 'house'">
+          <mat-form-field  appearance="fill" class="input-field">
+            <mat-label class="input-label">Кол-во мест:</mat-label>
+            <input matInput placeholder="Мест в домике..."
+                   [(ngModel)]="mapService.buttonHouseList[mapService.indexListAddChange].numberPlaces"
+                   (ngModelChange)="changeNumberPlacesObject()"
+                   class="input-text">
+          </mat-form-field>
+        </div>
+
+        <div class="container-input-group" *ngIf="mapService.buttonHouseList[mapService.indexListAddChange].type === 'house' || mapService.buttonHouseList[mapService.indexListAddChange].type === 'place'">
+          <mat-form-field appearance="fill"  class="input-field">
+            <mat-label class="input-label">Комфорт:</mat-label>
+            <mat-select class="input-select"
+                        placeholder="111"
+                        [(ngModel)]="mapService.buttonHouseList[mapService.indexListAddChange].comfort"
+                        (ngModelChange)="changeComfortObject()">
+              <mat-option *ngFor="let comfPos of mapService.comfortPos" [value]="comfPos.value" class="input-select">
+                {{comfPos.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="container-checkbox-group" *ngIf="mapService.buttonHouseList[mapService.indexListAddChange].type === 'house' || mapService.buttonHouseList[mapService.indexListAddChange].type === 'place'">
+          <mat-checkbox class="input-checkbox"
+                        [(ngModel)]="mapService.buttonHouseList[mapService.indexListAddChange].occupied"
+                        (ngModelChange)="changeOccupiedObject()">
+            Занят
+          </mat-checkbox>
+        </div>
+
+        <div class="container-input-group" *ngIf="mapService.buttonHouseList[mapService.indexListAddChange].type === 'object'">
+          <input type="file" (change)="changePictureObject($event)">
+        </div>
+      </div>
+      <!--------------------------------------------------------------------------------------------------------------------->
+      <div class="container-horizontal-group">
+        <div class="container-input-group">
+          <mat-form-field  appearance="fill" class="input-field">
+            <mat-label class="input-label">По горизонтали:</mat-label>
+            <input matInput placeholder="Мест в домике..."
+                   [(ngModel)]="mapService.buttonHouseList[mapService.indexListAddChange].position.left"
+                   class="input-text">
+          </mat-form-field>
+        </div>
+        <div class="container-range-group">
+          <input
+            class="input-range"
+            type="range"
+            min="0"
+            max="100"
+            step="0.01"
+            [(ngModel)]="mapService.buttonHouseList[mapService.indexListAddChange].position.left">
+        </div>
+      </div>
+      <!--------------------------------------------------------------------------------------------------------------------->
+      <div class="container-horizontal-group">
+        <div class="container-input-group">
+          <mat-form-field  appearance="fill" class="input-field">
+            <mat-label class="input-label">По вертикали:</mat-label>
+            <input matInput placeholder="Мест в домике..."
+                   [(ngModel)]="mapService.buttonHouseList[mapService.indexListAddChange].position.top"
+                   class="input-text">
+          </mat-form-field>
+        </div>
+        <div class="container-range-group">
+          <input
+            class="input-range"
+            type="range"
+            min="0"
+            max="100"
+            step="0.01"
+            [(ngModel)]="mapService.buttonHouseList[mapService.indexListAddChange].position.top">
+        </div>
+      </div>
+      <!--------------------------------------------------------------------------------------------------------------------->
+      <div class="container-horizontal-group">
+        <div class="container-input-group">
+          <mat-form-field  appearance="fill" class="input-field">
+            <mat-label class="input-label">Поворот:</mat-label>
+            <input matInput placeholder="Мест в домике..."
+                   [(ngModel)]="mapService.buttonHouseList[mapService.indexListAddChange].position.rotation"
+                   class="input-text">
+          </mat-form-field>
+        </div>
+        <div class="container-range-group">
+          <input
+            class="input-range"
+            type="range"
+            min="-180"
+            max="180"
+            step="0.01"
+            [(ngModel)]="mapService.buttonHouseList[mapService.indexListAddChange].position.rotation">
+        </div>
+      </div>
+      <!--------------------------------------------------------------------------------------------------------------------->
+    </div>
+    <div class="container-horizontal-group" *ngIf="mapService.flagStatusChangeMap != 'non' ">
+      <button mat-raised-button color="warn" (click)="mapService.saveNewObject()" class="btn-horizontal-container" *ngIf="mapService.flagStatusChangeMap != 'waitClickForObject' ">Сохранить</button>
+      <button mat-raised-button color="warn" (click)="mapService.cancelNewObject()" class="btn-horizontal-container">Отменить</button>
+      <button mat-raised-button color="warn" (click)="mapService.deleteObject()" class="btn-horizontal-container btn-del" *ngIf="mapService.flagStatusChangeMap === 'changeObject' ">Удалить</button>
+      <button mat-raised-button (click)="mapService.settingObject()" class="btn-horizontal-container btn-del" *ngIf="mapService.flagStatusChangeMap === 'addNewObject' ">Дополнительно</button>
+    </div>
+  </div>
+</div>

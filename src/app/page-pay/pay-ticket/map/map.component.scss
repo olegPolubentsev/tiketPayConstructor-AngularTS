@@ -13,6 +13,14 @@
     padding: 10px;
   }
 }
+.container-admin{
+  border: 1px solid rgba(22, 22, 22, 0.89);
+  background: rgba(71, 136, 109, 0.47);
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
 .container-information{
   width: 100%;
   box-sizing: border-box;
@@ -153,7 +161,7 @@
 }
 .btn-horizontal-container{
   margin-right: 10px;
-  background:rgb(121, 121, 121);
+  background: rgba(15, 20, 30, 0.77);
 }
 .btn-del{
   background: #ff9090;
