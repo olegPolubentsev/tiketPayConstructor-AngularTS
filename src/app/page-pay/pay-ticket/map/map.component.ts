@@ -1,5 +1,5 @@
 import {
-  Component, ComponentRef, EventEmitter,
+  Component, ComponentRef,
   OnInit,
   ViewChild, ViewContainerRef
 } from '@angular/core';
@@ -20,32 +20,6 @@ export class MapComponent implements OnInit {
   private viewRef: ViewContainerRef
   private componentRef: ComponentRef<DynamicComponent>
 
-  inputNewObject: ButtonHouse = {
-    type: 'house',
-    numObj: '1',
-    position: {
-      top: '0',
-      left: '0',
-      rotation: '0'
-    },
-    numberPlaces: '2',
-    comfort: '4',
-    occupied: false,
-    size: {
-      width: '0',
-      height: '0'
-    },
-    name: '',
-    img: '',
-    style: {
-      background: '',
-      change: false,
-      display: true
-    },
-    text: '',
-    color: '',
-    fontSize: '14'
-  }
   comfortPos: SelectField[] = [
     {value: '1', viewValue: 'Отличный'},
     {value: '2', viewValue: 'Хороший'},
@@ -59,8 +33,6 @@ export class MapComponent implements OnInit {
     {value: 'object', viewValue: 'Объект инфраструктуры'},
     {value: 'text', viewValue: 'Текст'}
   ]
-
-
   reservSaveObject: ButtonHouse = {
     type: 'house',
     numObj: '1',
@@ -92,7 +64,6 @@ export class MapComponent implements OnInit {
   flagAdditionalSetting = true
   buttonHouseList: ButtonHouse[] = []
 
-
   constructor(private objectService: ObjectsService) { }
 
   ngOnInit(): void {
@@ -106,44 +77,56 @@ export class MapComponent implements OnInit {
     this.flagStatusChangeMap = 'addNewObject'
   }
   addNewObjectToTempArray(){
-    let newHouse: ButtonHouse
-    if(this.buttonHouseList.length > 0) {
-      this.inputNewObject.numObj = (+this.buttonHouseList[this.buttonHouseList.length - 1].numObj + 1).toString()
-    }
-    else this.inputNewObject.numObj = '1'
 
-    newHouse = {
-      name: '',
-      img: this.inputNewObject.img,
-      type: this.inputNewObject.type,
-      numObj: this.inputNewObject.numObj,
-      occupied: false,
-      comfort: this.inputNewObject.comfort,
-      numberPlaces: this.inputNewObject.numberPlaces,
-      position: {
-        top: `${+this.inputNewObject.position.top}%`,
-        left: `${+this.inputNewObject.position.left}%`,
-        rotation: `${+this.inputNewObject.position.rotation}deg`
-      },
-      style: {background: this.inputNewObject.style.background,
-        display: false,
-        change: false
-      },
-      text: this.inputNewObject.text,
-      fontSize: `${this.inputNewObject.fontSize}px`,
-      color: this.inputNewObject.color,
-      size: {
-        width: `${this.inputNewObject.size.width}px`,
-        height: `${this.inputNewObject.size.height}px`
-      }
+    let newNumObj = '1'
+    if(this.buttonHouseList.length > 0) {
+      newNumObj = (+this.buttonHouseList[this.buttonHouseList.length - 1].numObj + 1).toString()
     }
-    this.buttonHouseList.push(newHouse)
+
+    const newObject: ButtonHouse = {
+      type: 'house',
+      numObj: <string>newNumObj,
+      position: {
+        top: '0',
+        left: '0',
+        rotation: '0'
+      },
+      numberPlaces: '2',
+      comfort: '4',
+      occupied: false,
+      size: {
+        width: '0',
+        height: '0'
+      },
+      name: '',
+      img: '',
+      style: {
+        background: '',
+        change: false,
+        display: true
+      },
+      text: '',
+      color: '',
+      fontSize: '14'
+    }
+    this.buttonHouseList.push(newObject)
     this.indexListAddChange = this.buttonHouseList.length-1
   }
   saveNewObject() {
-    this.objectService.createObject(this.buttonHouseList[this.indexListAddChange]).subscribe((res)=>{
-    })
-    this.flagStatusChangeMap = 'non'
+    if(this.flagStatusChangeMap === 'addNewObject') {
+      this.objectService.createObject(this.buttonHouseList[this.indexListAddChange]).subscribe((res) => {
+        this.buttonHouseList[this.indexListAddChange].name = res.name
+        console.log(`Objet created and add to DB. ID: ${res.name}`)
+      })
+      this.flagStatusChangeMap = 'non'
+    }
+    if(this.flagStatusChangeMap === 'changeObject') {
+      console.log(this.buttonHouseList[this.indexListAddChange])
+      this.objectService.updateObject(this.buttonHouseList[this.indexListAddChange]).subscribe(() => {
+        console.log('Objet changes and update in DB')
+      })
+      this.flagStatusChangeMap = 'non'
+    }
   }
   cancelNewObject() {
     if(this.flagStatusChangeMap === 'addNewObject') {

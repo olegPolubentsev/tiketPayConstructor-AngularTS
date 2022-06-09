@@ -30,9 +30,5 @@ export class ObjectsService {
   }
   updateObject(object: ButtonHouse): Observable<ButtonHouse>{
     return this.http.patch<ButtonHouse>(`${environment.fbDbObjectPayPlaces}/pay/map/object/${object.name}.json`, object)
-
   }
- createImg(picture: File): Observable<File>{
-   return this.http.post<File>(`${environment.fbStObjectPayPlaces}/`, picture)
- }
 }
