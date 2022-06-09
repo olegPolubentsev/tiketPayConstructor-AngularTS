@@ -16,7 +16,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
-import { MapAdminComponent } from './pay-ticket/map-admin/map-admin.component';
+import { MapAdminComponent } from './pay-ticket/map/map-admin/map-admin.component';
 
 
 

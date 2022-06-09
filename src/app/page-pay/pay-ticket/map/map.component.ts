@@ -4,8 +4,7 @@ import {
   ViewChild, ViewContainerRef
 } from '@angular/core';
 import {DynamicComponent} from "../dynamic/dynamic.component";
-import {ButtonHouse, SelectField} from "./interfases";
-import {ObjectsService} from "./objects.service";
+import {ButtonHouse} from "./interfases";
 import {MapService} from "./map.service";
 
 
@@ -21,23 +20,20 @@ export class MapComponent implements OnInit {
   private viewRef: ViewContainerRef
   private componentRef: ComponentRef<DynamicComponent>
 
-
-
-
   constructor(
     public mapService: MapService
   ) { }
 
   ngOnInit(): void {}
 
-
-
-
-
-
-
-
-
+  selectObjectOnMap(object: ButtonHouse) {
+    if(this.mapService.flagStatusChangeMap === 'waitClickForObject' || this.mapService.flagStatusChangeMap === 'changeObject'){
+      this.mapService.selectObject(object)
+    }
+    else if(this.mapService.flagStatusChangeMap === 'non'){
+      this.showModel(object)
+    }
+  }
 
   showModel(obj: ButtonHouse) {
     this.viewRef.clear()

@@ -7,6 +7,9 @@ import {ObjectsService} from "./objects.service";
 export class MapService implements OnInit{
 
   constructor(private objectService: ObjectsService) {
+    this.objectService.getAllObject().subscribe(response => {
+      this.buttonHouseList = response
+    })
   }
 
   comfortPos: SelectField[] = [
@@ -55,9 +58,7 @@ export class MapService implements OnInit{
   flagStatusChangeMap = 'non'
 
   ngOnInit() {
-    this.objectService.getAllObject().subscribe(response => {
-      this.buttonHouseList = response
-    })
+
   }
 
   addObjectOnMap() {
@@ -65,7 +66,6 @@ export class MapService implements OnInit{
     this.flagStatusChangeMap = 'addNewObject'
   }
   addNewObjectToTempArray(){
-
     let newNumObj = '1'
     if(this.buttonHouseList.length > 0) {
       newNumObj = (+this.buttonHouseList[this.buttonHouseList.length - 1].numObj + 1).toString()
@@ -142,6 +142,16 @@ export class MapService implements OnInit{
     this.flagStatusChangeMap = 'non'
 
   }
+  settingObject() {
+    this.flagAdditionalSetting = true
+  }
+
+  selectObject(object: ButtonHouse){
+    this.indexListAddChange = this.findClickObject(object)
+    this.fillReserveContainer()
+    this.flagStatusChangeMap = 'changeObject'
+  }
+
   findClickObject(clickObj: ButtonHouse){
     for (let i = 0; i < this.buttonHouseList.length; ++i){
       if(this.buttonHouseList[i].name === clickObj.name) {
@@ -149,19 +159,6 @@ export class MapService implements OnInit{
       }
     }
     return 0
-  }
-  settingObject() {
-    this.flagAdditionalSetting = true
-  }
-  selectObjectOnMap(object: ButtonHouse) {
-    if(this.flagStatusChangeMap === 'waitClickForObject' || this.flagStatusChangeMap === 'changeObject'){
-      this.indexListAddChange = this.findClickObject(object)
-      this.fillReserveContainer()
-      this.flagStatusChangeMap = 'changeObject'
-    }
-    else if(this.flagStatusChangeMap === 'non'){
-      //this.showModel(object)
-    }
   }
 
   ChangeObjectOnMap() {

@@ -11,7 +11,7 @@
     <app-button-house
       *ngFor="let house of mapService.buttonHouseList"
       [house]="house"
-      (onChange)="mapService.selectObjectOnMap($event)"
+      (onChange)="selectObjectOnMap($event)"
     ></app-button-house>
     <ng-template #dynamic></ng-template>
   </div>
