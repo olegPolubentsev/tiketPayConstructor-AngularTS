@@ -40,7 +40,7 @@
             <mat-form-field appearance="fill" class="input-field">
               <mat-label class="input-label">№ объекта:</mat-label>
               <input matInput placeholder="Введите номер..."
-                     [(ngModel)]="inputNewObject.id"
+                     [(ngModel)]="inputNewObject.numObj"
                      (ngModelChange)="changeIdObject()"
                      class="input-text">
             </mat-form-field>
@@ -79,13 +79,7 @@
         </div>
 
         <div class="container-input-group" *ngIf="buttonHouseList[indexListAddChange].type === 'object'">
-          <mat-form-field  appearance="fill" class="input-field">
-            <mat-label class="input-label">Изображение</mat-label>
-            <input matInput placeholder="путь к файлу..."
-                   [(ngModel)]="inputNewObject.numberPlaces"
-                   (click)="enterFileOnLocal()"
-                   class="input-text">
-          </mat-form-field>
+          <input type="file" (change)="changePictureObject($event)">
         </div>
       </div>
   <!--------------------------------------------------------------------------------------------------------------------->
@@ -94,7 +88,7 @@
           <mat-form-field  appearance="fill" class="input-field">
             <mat-label class="input-label">По горизонтали:</mat-label>
             <input matInput placeholder="Мест в домике..."
-                   [(ngModel)]="inputNewObject.inputRangeHorizontalPos"
+                   [(ngModel)]="inputNewObject.position.left"
                    (ngModelChange)="changeHorizontalPositionObject()"
                    class="input-text">
           </mat-form-field>
@@ -106,7 +100,7 @@
           min="0"
           max="100"
           step="0.01"
-          [(ngModel)]="inputNewObject.inputRangeHorizontalPos"
+          [(ngModel)]="inputNewObject.position.left"
           (ngModelChange)="changeHorizontalPositionObject()">
         </div>
       </div>
@@ -116,7 +110,7 @@
           <mat-form-field  appearance="fill" class="input-field">
             <mat-label class="input-label">По вертикали:</mat-label>
             <input matInput placeholder="Мест в домике..."
-                   [(ngModel)]="inputNewObject.inputRangeVerticalPos"
+                   [(ngModel)]="inputNewObject.position.top"
                    (ngModelChange)="changeVerticalPositionObject()"
                    class="input-text">
           </mat-form-field>
@@ -128,7 +122,7 @@
             min="0"
             max="100"
             step="0.01"
-            [(ngModel)]="inputNewObject.inputRangeVerticalPos"
+            [(ngModel)]="inputNewObject.position.top"
             (ngModelChange)="changeVerticalPositionObject()">
         </div>
       </div>
@@ -138,7 +132,7 @@
           <mat-form-field  appearance="fill" class="input-field">
             <mat-label class="input-label">Поворот:</mat-label>
             <input matInput placeholder="Мест в домике..."
-                   [(ngModel)]="inputNewObject.inputRangeRotationPos"
+                   [(ngModel)]="inputNewObject.position.rotation"
                    (ngModelChange)="changeRotationPositionObject()"
                    class="input-text">
           </mat-form-field>
@@ -150,7 +144,7 @@
             min="-180"
             max="180"
             step="0.01"
-            [(ngModel)]="inputNewObject.inputRangeRotationPos"
+            [(ngModel)]="inputNewObject.position.rotation"
             (ngModelChange)="changeRotationPositionObject()">
         </div>
       </div>
@@ -164,6 +158,8 @@
     </div>
   </div>
 </div>
+
+
 <!--=================================================================================================================-->
 <div class="container-map">
   <div class="map">

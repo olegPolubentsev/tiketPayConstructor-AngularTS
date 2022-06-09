@@ -15,6 +15,16 @@ export class ObjectsService {
       }))
 
   }
+  getAllObject(): Observable<ButtonHouse[]>{
+    return this.http.get(`${environment.fbDbObjectPayPlaces}/pay/map/object.json`)
+      .pipe(map((response:{[key: string]: any} )=>{
+        return Object.keys(response)
+          .map(key => ({
+            ...response[key],
+            name: key
+          }))
+      }))
+  }
   deleteObject(id: string):Observable<void>{
     return this.http.delete<void>(`${environment.fbDbObjectPayPlaces}/pay/map/object/${id}.json`)
   }
@@ -22,5 +32,7 @@ export class ObjectsService {
     return this.http.patch<ButtonHouse>(`${environment.fbDbObjectPayPlaces}/pay/map/object/${object.name}.json`, object)
 
   }
-
+ createImg(picture: File): Observable<File>{
+   return this.http.post<File>(`${environment.fbStObjectPayPlaces}/`, picture)
+ }
 }
